@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean class="com.zh.pojo.Girl" id="girl" lazy-init="true" depends-on="dog">
+        <property name="dog" ref="gdog"/>
+    </bean>
+
+    <alias name="dog" alias="gdog"/>
+
+    <bean class="com.zh.pojo.Dog" id="dog">
+        <property name="name" value="哮天犬"/>
+    </bean>
+    <bean class="com.zh.pojo.Dog" id="dog2">
+        <constructor-arg name="name" value="旺财"/>
+    </bean>
+    <bean class="com.zh.pojo.Car" id="car">
+        <constructor-arg name="name" value="宝马"/>
+        <constructor-arg name="price" value="333333"/>
+        <constructor-arg name="speed" value="120"/>
+    </bean>
+
+    <bean class="com.zh.pojo.Car" id="car2">
+        <constructor-arg index="0" value="222"/>
+        <constructor-arg index="1" value="233233"/>
+    </bean>
+    <bean class="com.zh.pojo.Car" id="car3">
+        <constructor-arg type="java.lang.Double" value="2333"/>
+        <constructor-arg type="java.lang.Double" value="323232"/>
+    </bean>
+</beans>
