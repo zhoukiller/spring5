@@ -19,65 +19,8 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.3.xsd
         ">
-
+    <!--    配置自动代理    -->
     <aop:aspectj-autoproxy/>
-    <bean class="com.zh.advice.BeforeAdvice" id="beforeAdvice">
-    </bean>
-    <bean class="com.zh.advice.AfterAdvice" id="afterAdvice">
-    </bean>
-    <bean class="com.zh.advice.AfterReturningAdvice" id="afterReturningAdvice">
-    </bean>
-    <bean class="com.zh.advice.ExceptionAdvice" id="exceptionAdvice">
-    </bean>
-    <bean class="com.zh.advice.AroundService" id="aroundService">
-    </bean>
-
-    <bean class="com.zh.service.ProviderService" id="providerService">
-    </bean>
-    <bean class="com.zh.service.HelloService" id="helloService">
-    </bean>
-
-    <aop:config>
-        <aop:aspect id="beforeAdvice" ref="beforeAdvice">
-        <!--
-            aop:before 表明这是一个前置通知
-            method: 指明使用什么方法切
-            pointcut: 切入点表达式
-                指明在什么包下的什么类的什么方法需要切入
-        -->
-        <!--
-            切入点表达式:
-            com.zh.service.*.*(..)  :
-                第一个*表示，service包下的任意类；
-                第二个*表示，类中的任意方法;
-                其中..表示，无参、任意个数参数
-            com.zh.service.*.*()    ：
-                表示匹配无参函数匹配
-            com.zh.service.*.*(java.lang.String):
-                表示匹配只有一个String类型参数的方法；
-                即可以在括号中添加参数的全限定类名，
-                来指定匹配的参数类型，并且根据指定的顺序匹配
-            java.lang.String com.zh.service.*.*(java.lang.String):
-                表示匹配只有一个String类型参数且返回值为String类型的方法
-
-        -->
-<!--            <aop:before method="before" pointcut="execution(* com.zh.service.*.*(..))"></aop:before>-->
-<!--            <aop:before method="methodBefore" pointcut="execution(* com.zh.service.*.*(..))"></aop:before>-->
-        </aop:aspect>
-
-        <aop:aspect id="afterAdvice" ref="afterAdvice">
-            <aop:after method="methodAfter" pointcut="execution(* com.zh.service.*.*(..))"></aop:after>
-        </aop:aspect>
-
-        <aop:aspect ref="afterReturningAdvice">
-            <aop:after-returning method="afterReturning" pointcut="execution(* com.*.*.*.*(..))" returning="num"/>
-        </aop:aspect>
-
-        <aop:aspect ref="exceptionAdvice">
-            <aop:after-throwing method="except" pointcut="execution(* com.*.*.*.*(..))"></aop:after-throwing>
-        </aop:aspect>
-        <aop:aspect ref="aroundService">
-            <aop:around method="around" pointcut="execution(* com.*.*.*.*(..))"/>
-        </aop:aspect>
-    </aop:config>
+    <!--    配置基础扫描包     -->
+    <context:component-scan base-package="com"/>
 </beans>

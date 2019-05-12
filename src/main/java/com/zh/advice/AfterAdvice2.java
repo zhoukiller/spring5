@@ -5,13 +5,12 @@ import org.aspectj.lang.annotation.Aspect;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-//@Order(1)
+//@Order(11)
 //@Aspect
 @Component
-public class AfterAdvice {
-
+public class AfterAdvice2 {
 //    @After("execution(* com..*.*(..))")
     public void after() {
-        System.out.println("after");
+        System.out.println("after2");
     }
 }
